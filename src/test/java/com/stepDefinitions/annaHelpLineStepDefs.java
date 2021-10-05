@@ -42,14 +42,14 @@ public class annaHelpLineStepDefs extends mainPageForAnnaHelpLine {
     }
 
     @Given("Access Grid")
-    public void grid_console() throws MalformedURLException {
+    public void grid_console() throws IOException {
         DesiredCapabilities cap = new DesiredCapabilities();
         cap.setBrowserName("chrome");
         cap.setPlatform(Platform.WINDOWS);
         ChromeOptions op = new ChromeOptions();
         op.setHeadless(true);
         op.merge(cap);
-        String huburl = "http://192.168.0.91:42127/wd/hub";
+        String huburl = getValueFromDataConfig("Remote.Url");
         driver = new RemoteWebDriver(new URL(huburl), op);
     }
 

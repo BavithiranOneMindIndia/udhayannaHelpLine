@@ -6,7 +6,7 @@ import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = "src/test/java/com/features", glue = "com.stepDefinitions", tags = "@AnnaHelpLine", plugin = {
+@CucumberOptions(features = "src/test/java/com/features", glue = "com.stepDefinitions", tags = "@Grid2", plugin = {
         "pretty" }, monochrome = true, stepNotifications = true)
 
 public class TestRunner {
