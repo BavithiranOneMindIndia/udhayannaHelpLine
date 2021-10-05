@@ -34,6 +34,10 @@ public class annaHelpLineStepDefs extends mainPageForAnnaHelpLine {
     @Given("^Access WebDriverManager For AnnaHelpLine$")
     public void access_WebdriverManager() {
         WebDriverManager.chromedriver().setup();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--headless");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         // driver.manage().deleteAllCookies();
@@ -46,6 +50,7 @@ public class annaHelpLineStepDefs extends mainPageForAnnaHelpLine {
         DesiredCapabilities cap = new DesiredCapabilities();
         cap.setBrowserName("chrome");
         cap.setPlatform(Platform.WINDOWS);
+        
         ChromeOptions op = new ChromeOptions();
         op.setHeadless(true);
         op.merge(cap);
@@ -221,6 +226,7 @@ public class annaHelpLineStepDefs extends mainPageForAnnaHelpLine {
     @Then("Click create new")
     public void click_create_new() throws IOException {
         clickCreateNew_admin(driver);
+        
     }
 
     @Then("enter mobile in admin")
@@ -242,6 +248,8 @@ public class annaHelpLineStepDefs extends mainPageForAnnaHelpLine {
     public void click_create_in_admin() throws IOException {
 
         clickCreate_admin(driver);
+
+        waitForCompliantExists(driver);
     }
 
     @Then("Quit Browser")

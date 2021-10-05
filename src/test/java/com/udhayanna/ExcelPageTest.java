@@ -13,8 +13,6 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 public class ExcelPageTest {
 
-    
-
     public static String[][] readExcelInto2DArray(String excelFilePath, String sheetName, int totalCols) {
 
         File file = new File(excelFilePath);

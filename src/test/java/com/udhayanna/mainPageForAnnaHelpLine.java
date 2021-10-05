@@ -4,7 +4,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
 import static org.junit.Assert.assertTrue;
-
+import static org.junit.Assert.assertFalse;
+import org.testng.asserts.SoftAssert;
 import java.io.IOException;
 import java.util.List;
 import java.net.MalformedURLException;
@@ -26,6 +27,8 @@ public class mainPageForAnnaHelpLine extends superClass {
         List<WebElement> ListOfLocation;
         Boolean welcomebackTextIsDisplayed;
         List<WebElement> ListofComplaints;
+        String issueCategoryMapString;
+        String issueMapString;
 
         public void gridconsole() throws MalformedURLException {
                 DesiredCapabilities cap = new DesiredCapabilities();
@@ -312,21 +315,57 @@ public class mainPageForAnnaHelpLine extends superClass {
                 getwaitdriver(driver).until(ExpectedConditions.visibilityOfElementLocated(
                                 getValueFromElementAddressConfig("admin.create.mobilenumber")));
                 driver.findElement(getValueFromElementAddressConfig("admin.create.mobilenumber"))
-                                .sendKeys(getValueFromDataConfig("phoneNumber"));
+                                .sendKeys(getValueFromDataConfig("phoneNumber.OnCreate"));
 
         }
 
         public void enterName_admin(WebDriver driver) throws IOException {
-                getwaitdriver(driver).until(ExpectedConditions.visibilityOfElementLocated(
-                                getValueFromElementAddressConfig("admin.creat.name")));
+                getwaitdriver(driver).until(ExpectedConditions
+                                .visibilityOfElementLocated(getValueFromElementAddressConfig("admin.creat.name")));
                 driver.findElement(getValueFromElementAddressConfig("admin.creat.name"))
                                 .sendKeys(getValueFromDataConfig("name"));
         }
 
-        public void select_issueCategory_admin(WebDriver driver){
+        public void select_issueCategory_admin(WebDriver driver) {
                 Select issueCat = new Select(driver.findElement(By.id("issueCategory")));
-                issueCat.selectByIndex(1);
+                // selecting issueCategory with random value
+                int randforIssueCategory = getrandomvalue(1, 4);
+                issueCategoryMapString = hashIssueCategory().get(randforIssueCategory);
+                // issueCat.selectByVisibleText(issueCategoryMapString);
+                issueCat.selectByValue(issueCategoryMapString);
 
+                // Using random value selecting issue
+                Select issue = new Select(driver.findElement(By.id("issue")));
+                if (randforIssueCategory == 4) {
+                        System.out.println("IssueCategory is others So there will be no issue to select "
+                                        + issueCategoryMapString);
+                } else if (randforIssueCategory == 1) {
+                        System.out.println("Select PUS issuCategory " + issueCategoryMapString);
+                        int randissueForPUS = getrandomvalue(1, 18);
+                        issueMapString = hashIssuePUS().get(randissueForPUS);
+                        issue.selectByValue(issueMapString);
+
+                } else if (randforIssueCategory == 2) {
+                        System.out.println("Select Livelihood issuCategory " + issueCategoryMapString);
+                        int randissueForLiveli = getrandomvalue(1, 6);
+                        issueMapString = hashIssueLiveli().get(randissueForLiveli);
+                        issue.selectByValue(issueMapString);
+
+                } else if (randforIssueCategory == 3) {
+                        System.out.println("Select GovtDoc issuCategory " + issueCategoryMapString);
+                        int randissueForGovtDoc = getrandomvalue(1, 8);
+                        issueMapString = hashIssueGovtDoc().get(randissueForGovtDoc);
+                        issue.selectByValue(issueMapString);
+                } else {
+                        System.out.println("No Expected value for selecting issue");
+                }
+
+        }
+
+        public void waitForCompliantExists(WebDriver driver) throws IOException{
+
+                assertFalse(driver.findElement(getValueFromElementAddressConfig("admin.compliantExists")).isDisplayed());
+                
         }
 
         public void clickCreate_admin(WebDriver driver) throws IOException {

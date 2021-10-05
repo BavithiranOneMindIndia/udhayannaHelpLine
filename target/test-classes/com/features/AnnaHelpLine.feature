@@ -34,6 +34,30 @@ Feature: Testing AnnaHelpline
             | Framework | Stage.url.annaHelpLine | Live.url.annaHelpine |
 
 
+    @WebDrivermanager2
+    Scenario Outline:  AnnaHelp Line Grid
+        Given Access WebDriverManager For AnnaHelpLine
+        Then Launch chrome browser for "<Live>" AnnaHelpLine
+        Then Click Login for AnnaHelpLine
+        Then Enter Phone number for AnnaHelpLine
+        Then Then click countinue button AnnaHelpLine
+        Then Then click countinue button AnnaHelpLine
+        Then Enter otp
+        Then Then click countinue button AnnaHelpLine
+        Then Wait action for "4" seconds AnnaHelpLine
+        Then Click splash screen
+        Then Click create new
+        Then enter mobile in admin
+        Then enter name in admin
+        Then Select issue Category
+        Then Click create in admin
+        Then Quit Browser
+
+        Examples:
+            | Website   | Stage                  | Live                 |
+            | Framework | Stage.url.annaHelpLine | Live.url.annaHelpine |
+
+
     @Grid2
     Scenario Outline:  AnnaHelp Line Grid
         Given Access Grid
@@ -52,6 +76,28 @@ Feature: Testing AnnaHelpline
         Then Select issue Category
         Then Click create in admin
         Then Quit Browser
+
+        Examples:
+            | Website   | Stage                  | Live                 |
+            | Framework | Stage.url.annaHelpLine | Live.url.annaHelpine |
+
+    @Webdriver2
+    Scenario Outline:  AnnaHelp Line Grid
+        Given Access WebDriverManager For AnnaHelpLine
+        Then Launch chrome browser for "<Live>" AnnaHelpLine
+        Then Click Login for AnnaHelpLine
+        Then Enter Phone number for AnnaHelpLine
+        Then Then click countinue button AnnaHelpLine
+        Then Then click countinue button AnnaHelpLine
+        Then Enter otp
+        Then Then click countinue button AnnaHelpLine
+        Then Wait action for "4" seconds AnnaHelpLine
+        Then Click splash screen
+        Then Click create new
+        Then enter mobile in admin
+        Then enter name in admin
+        Then Select issue Category
+
 
         Examples:
             | Website   | Stage                  | Live                 |
