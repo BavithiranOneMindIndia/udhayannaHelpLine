@@ -35,7 +35,7 @@ Feature: Testing AnnaHelpline
 
 
     @WebDrivermanager2
-    Scenario Outline:  AnnaHelp Line Grid
+    Scenario Outline:  AnnaHelp Line , creating a ticket using webdriver manager
         Given Access WebDriverManager For AnnaHelpLine
         Then Launch chrome browser for "<Live>" AnnaHelpLine
         Then Click Login for AnnaHelpLine

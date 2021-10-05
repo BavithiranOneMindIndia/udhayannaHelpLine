@@ -362,10 +362,19 @@ public class mainPageForAnnaHelpLine extends superClass {
 
         }
 
-        public void waitForCompliantExists(WebDriver driver) throws IOException{
+        public void waitForCompliantExists(WebDriver driver) throws IOException {
 
-                assertFalse(driver.findElement(getValueFromElementAddressConfig("admin.compliantExists")).isDisplayed());
-                
+                Boolean complaintExistsResult = driver
+                                .findElement(getValueFromElementAddressConfig("admin.compliantExists")).isDisplayed();
+
+                                if(complaintExistsResult == true){
+                                        System.out.println("Complaint already exists");
+                                        driver.quit();
+                                }
+                                else{
+                                        System.out.println(" This Complaint is new ");
+                                }
+
         }
 
         public void clickCreate_admin(WebDriver driver) throws IOException {
