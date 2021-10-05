@@ -363,17 +363,17 @@ public class mainPageForAnnaHelpLine extends superClass {
         }
 
         public void waitForCompliantExists(WebDriver driver) throws IOException {
-
+                getwaitdriver(driver).until(ExpectedConditions
+                                .visibilityOfElementLocated(getValueFromElementAddressConfig("admin.compliantExists")));
                 Boolean complaintExistsResult = driver
                                 .findElement(getValueFromElementAddressConfig("admin.compliantExists")).isDisplayed();
 
-                                if(complaintExistsResult == true){
-                                        System.out.println("Complaint already exists");
-                                        driver.quit();
-                                }
-                                else{
-                                        System.out.println(" This Complaint is new ");
-                                }
+                if (complaintExistsResult == true) {
+                        System.out.println("Complaint already exists");
+                        driver.quit();
+                } else {
+                        System.out.println(" This Complaint is new ");
+                }
 
         }
 
