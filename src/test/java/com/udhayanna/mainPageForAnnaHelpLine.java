@@ -344,18 +344,24 @@ public class mainPageForAnnaHelpLine extends superClass {
                         int randissueForPUS = getrandomvalue(1, 18);
                         issueMapString = hashIssuePUS().get(randissueForPUS);
                         issue.selectByValue(issueMapString);
+                        System.out.println("Select PUS issuCategory and selected issue " + issueCategoryMapString
+                                        + " & " + issueMapString);
 
                 } else if (randforIssueCategory == 2) {
                         System.out.println("Select Livelihood issuCategory " + issueCategoryMapString);
                         int randissueForLiveli = getrandomvalue(1, 6);
                         issueMapString = hashIssueLiveli().get(randissueForLiveli);
                         issue.selectByValue(issueMapString);
+                        System.out.println("Select Livelihood issuCategory and selected issue " + issueCategoryMapString
+                                        + " & " + issueMapString);
 
                 } else if (randforIssueCategory == 3) {
                         System.out.println("Select GovtDoc issuCategory " + issueCategoryMapString);
                         int randissueForGovtDoc = getrandomvalue(1, 8);
                         issueMapString = hashIssueGovtDoc().get(randissueForGovtDoc);
                         issue.selectByValue(issueMapString);
+                        System.out.println("Select GovtDoc issuCategory and selected issue " + issueCategoryMapString
+                                        + " & " + issueMapString);
                 } else {
                         System.out.println("No Expected value for selecting issue");
                 }
@@ -363,16 +369,21 @@ public class mainPageForAnnaHelpLine extends superClass {
         }
 
         public void waitForCompliantExists(WebDriver driver) throws IOException {
-                getwaitdriver(driver).until(ExpectedConditions
-                                .visibilityOfElementLocated(getValueFromElementAddressConfig("admin.compliantExists")));
-                Boolean complaintExistsResult = driver
-                                .findElement(getValueFromElementAddressConfig("admin.compliantExists")).isDisplayed();
+                try {
+                        getwaitdriver(driver).until(ExpectedConditions.visibilityOfElementLocated(
+                                        getValueFromElementAddressConfig("admin.compliantExists")));
+                        Boolean complaintExistsResult = driver
+                                        .findElement(getValueFromElementAddressConfig("admin.compliantExists"))
+                                        .isDisplayed();
 
-                if (complaintExistsResult == true) {
-                        System.out.println("Complaint already exists");
-                        driver.quit();
-                } else {
-                        System.out.println(" This Complaint is new ");
+                        if (complaintExistsResult == true) {
+                                System.out.println("Complaint already exists");
+                                driver.quit();
+                        } else {
+                                System.out.println(" This Complaint is new ");
+                        }
+                } catch (Exception e) {
+                        System.out.println(e.getMessage());
                 }
 
         }
